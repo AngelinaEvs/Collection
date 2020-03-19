@@ -81,42 +81,7 @@ public class MyCollection <T> {
             }
         }
         return true;
-        /*for (int i = 0; i < value.length; i++) {
-            if (value[i] && i == value.length - 1 ) {
-                return true;
-            }
-            if (!(value[i])) {
-                return false;
-            }
-        }
-        return false;*/
-    }
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MyCollection<T> that = (MyCollection<T>) o;
-       if (size != that.size) return false;
-        boolean f = true;
-        for (int i = 0; i < data.length; i++) {
-            if (!f) break;
-            for (int j = i; j < that.data.length; j++) {
-                if (data[i].equals(that.data[j])) {
-                    T el = that.data[j];
-                    that.data[j] = that.data[i];
-                    that.data[i] = el;
-                    break;
-                }
-                if (j == that.data.length - 1 && !(data[i].equals(that.data[j]))) {
-                    f = false;
-                    break;
-                }
-            }
-        }
-        return f;
-    }*/
-
+        
     @Override
     public int hashCode() {
         int result = Objects.hash(size, maxsize);

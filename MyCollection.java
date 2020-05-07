@@ -31,33 +31,33 @@ public class MyCollection <T> {
 
     private class StrangeArrayIterator <T> implements Iterator<T> {
 
-    protected int cursor;
+        protected int cursor;
 
-    public boolean hasNext() {
-        if (!(data.length > cursor)) {
+        public boolean hasNext() {
+            if (!(data.length > cursor)) {
+                return false;
+            }
+            for (int i = cursor; i < data.length; i = i + 2) {
+                if (data[i] != null) {
+                    return true;
+                }
+            }
             return false;
         }
-        for (int i = cursor; i < data.length; i = i + 2) {
-            if (data[i] != null) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public T next() {
-        try {
-            T el = (T) data[cursor];
-            cursor = cursor + 2;
-            while (el == null) {
-                el = (T) data[cursor];
+        public T next() {
+            try {
+                T el = (T) data[cursor];
                 cursor = cursor + 2;
+                while (el == null) {
+                    el = (T) data[cursor];
+                    cursor = cursor + 2;
+                }
+                return el;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new NoSuchElementException();
             }
-            return el;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new NoSuchElementException();
         }
-    }
     }
 
     @Override
@@ -81,7 +81,8 @@ public class MyCollection <T> {
             }
         }
         return true;
-        
+    }
+
     @Override
     public int hashCode() {
         int result = Objects.hash(size, maxsize);
@@ -98,5 +99,3 @@ public class MyCollection <T> {
                 '}';
     }
 }
-
-
